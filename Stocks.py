@@ -32,14 +32,14 @@ class StockWindow:
         self.seeAllStocks.place(x=0,y=0)
         self.goBack =tk.Button(self.master,text = "Go back",command=self.close_windows)
         self.goBack.place(x=100,y=100)
-        self.createStock("afdhsfdhsfhsfghsgfhsdg",3,300)
-        self.createStock("afdhsfdhsfhsfghsgfhsdg",3,300)
+        self.createStock("afdhsfdhsfhsfghsgfhsdg",3,30)
         #########
     def createStock(self,name,pricechange,placement):
-        stockframe = tk.LabelFrame(self.frame,text='')
+        stockframe = tk.LabelFrame(self.master,text='')
         #stockframe.size(200)
-        #stockframe.place(x=400,y=400,height=10,width=10) 
-        stockframe.pack(expand='yes',fill='both')
+        stockframe.place(relx=.5,rely=.5,height=10,width=10) 
+        #stockframe.pack(expand='yes',fill='both')
+        #stockframe.grid(column=5,row=5)
         tempLabel = tk.Label(stockframe,text=name)
         
         tempLabel.pack()
