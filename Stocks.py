@@ -1,5 +1,10 @@
 import tkinter as tk
 import yfinance
+import matplotlib
+matplotlib.use("TkAgg")
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2Tk
+from matplotlib.figure import Figure
+
 
 class StockWindow:
     def __init__(self,master,number):
@@ -31,24 +36,36 @@ class StockWindow:
         self.goBack.place(x=100,y=100)
         
         
-        ## LabelFrame
+        ## News Articles
         self.newsLabelFrame = tk.LabelFrame(self.master)
-        self.newsLabelFrame.place(relx=.4,rely=.3,height,width)
+        self.newsLabelFrame.place(relx=.4,rely=.3,height = int(h/2),width=int(w/3))
         for x in range(3):
-            createNews("Justin Bieber Straight?", "Is he straight? find out!")
+            self.createNews("Justin Bieber Straight?", "Is he straight? find out!")
+        for y in range(5):
+            self.createStock("sg","sg",y)
+        ## Graph
+        #self.Graph = tk.LabelFrame(self.master)
+        #self.Graph.place(relx=.4,rely=.2,height = int(h/6),width=int(w/3))
+        #self.stockFigure = Figure(figsize = (5,5),dpi=100)
+        #self.plotting = self.stockFigure.add_subplot(111)
+        #self.plotting.plot([1,2,3,4,5,6,7,8],[5,6,1,3,8,9,3,5])
+        #self.canvas = FigureCanvasTkAgg(self.stockFigure,self)
+        #self.canvas.show()
+        #self.canvas.get_tk_widget().pack(side=tk.TOP,fill=tk.BOTH,expand = True)
+        
+
+
 
 
         #########
-    def createNews(self,articleName,description):
+    def createNews(self,articleName,description,rowItsIn):
         newsLabel = tk.Label(self.newsLabelFrame,text=articleName+" "+description)
         newsLabel.pack()
     def createStock(self,name,pricechange,placement):
         stockframe = tk.LabelFrame(self.master,text='')
-        #stockframe.size(200)
-        stockframe.place(relx=.5,rely=.5,height=10,width=10) 
-        #stockframe.pack(expand='yes',fill='both')
-        #stockframe.grid(column=5,row=5)
+        stockframe.place(relx=.1,y=50+(rowItsIn*10),height=50,width=50) 
         tempLabel = tk.Label(stockframe,text=name)
+        tempLabel.pack()
     
         tempLabel.pack()
     def close_windows(self):
