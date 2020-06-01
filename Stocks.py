@@ -16,11 +16,8 @@ class StockWindow:
         ## Labels
         self.amountChanged = tk.Label(self.master,text = "$1000")
         self.amountChanged.place(x=w/2,y=h/2)
-        self.highestChangedStock = tk.Label(self.master,text = "Amzn")
-        self.highestChangedStock.place(x=w/2+10,y=h/2+40)
-        self.lowestChangedStock = tk.Label(self.master,text = "this one")
-        self.stockTips = tk.Label(self.master,text = "Buy some")
-        self.stockTips.place(x=2,y=777)
+       
+        
         self.marketChange = tk.Label(self.master,text = "Alot!")
         self.marketChange.place(x=23,y=66)
         self.stockNews = tk.Label(self.master,text = "News Here!")
@@ -32,8 +29,19 @@ class StockWindow:
         self.seeAllStocks.place(x=0,y=0)
         self.goBack =tk.Button(self.master,text = "Go back",command=self.close_windows)
         self.goBack.place(x=100,y=100)
-        self.createStock("afdhsfdhsfhsfghsgfhsdg",3,30)
+        
+        
+        ## LabelFrame
+        self.newsLabelFrame = tk.LabelFrame(self.master)
+        self.newsLabelFrame.place(relx=.4,rely=.3,height,width)
+        for x in range(3):
+            createNews("Justin Bieber Straight?", "Is he straight? find out!")
+
+
         #########
+    def createNews(self,articleName,description):
+        newsLabel = tk.Label(self.newsLabelFrame,text=articleName+" "+description)
+        newsLabel.pack()
     def createStock(self,name,pricechange,placement):
         stockframe = tk.LabelFrame(self.master,text='')
         #stockframe.size(200)
@@ -41,7 +49,7 @@ class StockWindow:
         #stockframe.pack(expand='yes',fill='both')
         #stockframe.grid(column=5,row=5)
         tempLabel = tk.Label(stockframe,text=name)
-        
+    
         tempLabel.pack()
     def close_windows(self):
         self.master.destroy()
